@@ -1,0 +1,14 @@
+env: local
+app_name: fizzy-server
+remote_conf:
+  log_path: ./logs
+  log_level: 5
+  db_log_enable : false
+  network: tcp
+  listen_address: 127.0.0.1
+  listen_host: 5050 #监听端口
+  max_long_connection_pool_size: 20 #支持同时访问人数
+  heartbeat_second: 180 #心跳时间(秒)
+  sentry_dsn: ""
+  
+  
