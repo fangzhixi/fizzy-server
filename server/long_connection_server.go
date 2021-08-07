@@ -6,20 +6,8 @@ import (
 	"net"
 )
 
-const (
-	TCP  string = "tcp"
-	TCP4 string = "tcp4"
-	TCP6 string = "tcp6"
-)
 
-type LongConnServer struct {
-	LogId       string
-	Address     string         //IP地址
-	Host        string         //端口号
-	MaxConnSize int32          //最大连接数
-	clientConns []*net.TCPConn //现有链接用户数
 
-}
 
 //NewServer mean create a new server that can keep a long time to connection the client
 func NewLongConnServer(logId, address, host string, maxClinetLongConnection ...int32) (server *LongConnServer, err error) {
@@ -64,6 +52,8 @@ func (s *LongConnServer) createTcpListering() error {
 	}
 }
 
+// is capable to deal with the tcp connection
+//tips: using this function should be create a runtinue 
 func (s *LongConnServer) tcpPipe(clientConn *net.TCPConn) {
 	ipAddress := clientConn.RemoteAddr().String()
 	defer func() {
@@ -73,6 +63,7 @@ func (s *LongConnServer) tcpPipe(clientConn *net.TCPConn) {
 	fmt.Printf("%s %s", s.LogId, ipAddress)
 }
 
+//add new tcp connection to the slice
 func (s *LongConnServer) addClientConn(tcpConn *net.TCPConn) error {
 	if tcpConn == nil {
 		return errors.New("TCPConn should not be empty")
@@ -81,6 +72,7 @@ func (s *LongConnServer) addClientConn(tcpConn *net.TCPConn) error {
 	return nil
 }
 
+//delete disconnected records in slice
 func (s *LongConnServer) deleteConn(tcpConn *net.TCPConn) error {
 	if tcpConn == nil {
 		return errors.New("TCPConn should not be empty")
