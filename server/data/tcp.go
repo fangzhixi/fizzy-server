@@ -1,7 +1,9 @@
 package data
 
+type Network string
+
 const (
-	TCP  string = "tcp"
-	TCP4 string = "tcp4"
-	TCP6 string = "tcp6"
+	TCP  Network = "tcp"
+	TCP4 Network = "tcp4"
+	TCP6 Network = "tcp6"
 )

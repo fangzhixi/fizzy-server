@@ -1,10 +1,9 @@
-package main
+package server_test
 
 import (
 	"bufio"
 	"errors"
 	"fmt"
-	"github.com/fangzhixi/fizzy-server/server"
 	"net"
 	"testing"
 )
@@ -105,13 +104,4 @@ func TestLongConnectionServer(t *testing.T) {
 	// data := []string{"a","b"}
 	// data = append(data[:1],data[2:]...)  //测试data[2:]...会不会因为超过范围报错
 	// fmt.Println(data)
-}
-
-func main() {
-	fmt.Println("创建新服务端...")
-	server := server.NewLongConnServer()
-	err := server.createTcpListering()
-	if err != nil {
-		log.Fatal(err)
-	}
 }

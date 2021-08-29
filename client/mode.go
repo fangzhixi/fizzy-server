@@ -1,15 +1,15 @@
-package client_test
+package main
 
 import (
 	"bufio"
 	"fmt"
 	"net"
 	"os"
-	"testing"
 )
 
 // 客户端连接服务端
 func createSocket() {
+
 	tcpAdd, err := net.ResolveTCPAddr("tcp", "127.0.0.1:5050") //解析服务端TCP地址
 	if err != nil {
 		fmt.Println("net.ResolveTCPAddr error:", err)
@@ -50,7 +50,7 @@ func onMessageRectived(conn *net.TCPConn) {
 	}
 }
 
-func TestLongConnectionClient(t *testing.T) {
+func main() {
 	fmt.Println("开启客户端")
 	createSocket()
 }
